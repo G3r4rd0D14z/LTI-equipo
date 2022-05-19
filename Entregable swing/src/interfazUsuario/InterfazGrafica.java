@@ -34,6 +34,7 @@ public class InterfazGrafica {
 	
 
 	private JFrame frmEntregableSwingCpoo;
+	
 	private static JTextField textField;
 	private static JTextField textField_1;
 	private static JTextField textField_2;
