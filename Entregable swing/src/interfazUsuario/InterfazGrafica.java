@@ -37,6 +37,8 @@ import funcionalidades.EventoSalir;
 import funcionalidades.EventoTerminar;
 
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JCheckBox;
 
 public class InterfazGrafica {
 
@@ -66,6 +68,7 @@ public class InterfazGrafica {
 	private static ArrayList <Persona> listaPersonas;
 	private static JTextField nomVehiculo;
 	private static JComboBox<String> comboColores;
+	private static JCheckBox checkInvertir;
 	
 	
 
@@ -106,7 +109,7 @@ public class InterfazGrafica {
 		frmEntregableSwingCpoo.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\User\\Documents\\Eclipse Workspace\\Entregable swing\\src\\interfazUsuario\\WhatsApp Image 2022-04-21 at 3.14.32 PM.jpeg"));
 		frmEntregableSwingCpoo.setForeground(Color.BLACK);
 		frmEntregableSwingCpoo.setTitle("Entregable Swing C3POO");
-		frmEntregableSwingCpoo.setBounds(100, 100, 738, 797);
+		frmEntregableSwingCpoo.setBounds(100, 50, 738, 797);
 		frmEntregableSwingCpoo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmEntregableSwingCpoo.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -233,9 +236,13 @@ public class InterfazGrafica {
 	    panel_4_2.add(spinner_1);
 	    spinner_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
-		textArea = new JTextArea();
+	    textArea = new JTextArea();
 		textArea.setBounds(35, 521, 681, 173);
-		panel.add(textArea);
+		textArea.setLineWrap(true);
+		textArea.setEditable(false);
+		JScrollPane barras = new JScrollPane(textArea);
+		panel.add(barras);
+		barras.setBounds(35, 521, 681, 173);
 		
 		btnNewButton = new JButton("Enviar");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -412,6 +419,11 @@ public class InterfazGrafica {
 		comboColores.addItem("VERDE");
 		comboColores.addItem("VIOLETA");
 		comboColores.setEditable(true);
+		
+		checkInvertir = new JCheckBox("Invertir orden");
+		checkInvertir.setFont(new Font("Tahoma", Font.BOLD, 15));
+		checkInvertir.setBounds(31, 700, 143, 21);
+		panel.add(checkInvertir);
 
 
 		
@@ -502,5 +514,9 @@ public class InterfazGrafica {
 
 	public static JComboBox<String> getComboColores() {
 		return comboColores;
+	}
+
+	public static JCheckBox getCheckInvertir() {
+		return checkInvertir;
 	}
 }

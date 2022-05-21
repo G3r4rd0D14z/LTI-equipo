@@ -23,13 +23,7 @@ public class Persona {
 		this.fechaNac = fechaNac;
 	}
 	
-/*	public Persona(String nombre, String apellido,int idPersona,String departamento,byte numHijos, LocalDate fechaNac) {
-		
-		this.idPersona = idPersona;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.fechaNac = fechaNac;     
-	}    */
+
 
 	
 	public int getNumHijos() {
@@ -47,7 +41,7 @@ public class Persona {
 	public String toString() {
 		
 		String salida = "Nombre: "+nombre+". Apellido: "+apellido+". Documento: "+idPersona+". \nFecha de nacimiento: "
-				        +fechaNac+". Departamento: "+departamento+". Número de hijos: "+numHijos+".\n\n";
+				        +fechaNac+". Departamento: "+departamento+". Número de hijos: "+numHijos+".\n";
 		return salida;
 	}
 
