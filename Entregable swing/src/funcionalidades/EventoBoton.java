@@ -6,12 +6,13 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
+import clases.HabilitaComponentes;
 import clases.Persona;
 import interfazUsuario.InterfazGrafica;
 
 public class EventoBoton implements ActionListener{
 	
-	
+	private HabilitaComponentes habilitador = new HabilitaComponentes();
 		
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -24,7 +25,9 @@ public class EventoBoton implements ActionListener{
 		int num_hijos = (int) InterfazGrafica.getSpinner_1().getValue();
 		
 		InterfazGrafica.getListapersonas().add( new Persona(nombre,apellido,documento,departamento,num_hijos,fechaNacimiento));
-			
+		habilitador.habilitarDerecha(true);
+		habilitador.habilitarIzquierda(false);
+		InterfazGrafica.getLabPropietario().setText(InterfazGrafica.getListapersonas().get(InterfazGrafica.getListapersonas().size()-1).nombre +" "+ InterfazGrafica.getListapersonas().get(InterfazGrafica.getListapersonas().size()-1).apellido+ " tiene:");
 	}
 	
 	public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
@@ -32,6 +35,8 @@ public class EventoBoton implements ActionListener{
 	      .atZone(ZoneId.systemDefault())
 	      .toLocalDate();
 	}
+	
+	
 	
 
 }

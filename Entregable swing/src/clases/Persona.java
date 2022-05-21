@@ -2,13 +2,15 @@ package clases;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Persona {
 
 	int idPersona;
-	String nombre, apellido, departamento;
+	public String nombre, apellido, departamento;
 	private int numHijos;
 	private final LocalDate fechaNac;
+	private ArrayList<Vehiculo> listaVehiculos = new ArrayList<>();
 	
 	public Persona(String nombre, String apellido,int idPersona, String departamento, int numHijos,
 			LocalDate fechaNac) {
@@ -48,5 +50,10 @@ public class Persona {
 				        +fechaNac+". Departamento: "+departamento+". Número de hijos: "+numHijos+".\n\n";
 		return salida;
 	}
+
+	public ArrayList<Vehiculo> getListaVehiculos() {
+		return listaVehiculos;
+	}
+
 	
 }

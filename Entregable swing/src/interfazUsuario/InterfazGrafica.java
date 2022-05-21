@@ -5,8 +5,13 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.time.Instant;
 import java.util.ArrayList;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -26,15 +31,19 @@ import com.toedter.calendar.JDateChooser;
 import clases.Persona;
 import funcionalidades.ControlCI;
 import funcionalidades.EventoBoton;
+import funcionalidades.EventoCargar;
 import funcionalidades.EventoMostrar;
 import funcionalidades.EventoSalir;
+import funcionalidades.EventoTerminar;
+
+import javax.swing.JRadioButton;
 
 public class InterfazGrafica {
 
 	
 
 	private JFrame frmEntregableSwingCpoo;
-	
+	private static JPanel panel;
 	private static JTextField textField;
 	private static JTextField textField_1;
 	private static JTextField textField_2;
@@ -43,7 +52,21 @@ public class InterfazGrafica {
 	private static JTextArea textArea;
 	private static JButton btnNewButton;
 	private static JDateChooser dateChooser;
+	private static JPanel panel_izquierdo;
+	private static JLabel labPropietario;
+	private static JRadioButton botonBarco;
+	private static JRadioButton botonAvion;
+	
+	private static JSpinner spinnerManga;
+	private static JSpinner spinnerEslora;
+	private static JSpinner spinnerLongitud;
+	private static JSpinner spinnerPasajeros;
+	private static JButton botonCargar;
+	private static JButton botonTerminar;
 	private static ArrayList <Persona> listaPersonas;
+	private static JTextField nomVehiculo;
+	private static JComboBox<String> comboColores;
+	
 	
 
 	/**
@@ -83,7 +106,7 @@ public class InterfazGrafica {
 		frmEntregableSwingCpoo.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\User\\Documents\\Eclipse Workspace\\Entregable swing\\src\\interfazUsuario\\WhatsApp Image 2022-04-21 at 3.14.32 PM.jpeg"));
 		frmEntregableSwingCpoo.setForeground(Color.BLACK);
 		frmEntregableSwingCpoo.setTitle("Entregable Swing C3POO");
-		frmEntregableSwingCpoo.setBounds(100, 100, 618, 722);
+		frmEntregableSwingCpoo.setBounds(100, 100, 738, 797);
 		frmEntregableSwingCpoo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmEntregableSwingCpoo.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -105,72 +128,56 @@ public class InterfazGrafica {
 		mntmNewMenuItem_1.addActionListener(new EventoSalir());
 		mnNewMenu.add(mntmNewMenuItem_1);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		frmEntregableSwingCpoo.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(33, 31, 531, 40);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Nombre");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(92, 10, 141, 30);
-		panel_1.add(lblNewLabel);
-		
-		textField = new JTextField();
-		textField.setBounds(267, 0, 214, 37);
-		panel_1.add(textField);
-		textField.setColumns(10);
-		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(33, 92, 531, 40);
+		panel_2.setBounds(31, 89, 364, 40);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
 		JLabel lblApellido = new JLabel("Apellido");
 		lblApellido.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblApellido.setHorizontalAlignment(SwingConstants.CENTER);
-		lblApellido.setBounds(90, 10, 141, 30);
+		lblApellido.setBounds(10, 7, 141, 30);
 		panel_2.add(lblApellido);
 		
 		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(267, 3, 214, 37);
+		textField_1.setBounds(167, 0, 197, 37);
 		panel_2.add(textField_1);
+		textField_1.setColumns(10);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(33, 155, 531, 40);
+		panel_3.setBounds(33, 155, 362, 40);
 		panel.add(panel_3);
 		panel_3.setLayout(null);
 		
 		JLabel lblDocumento = new JLabel("C.I.");
 		lblDocumento.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblDocumento.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDocumento.setBounds(90, 10, 141, 30);
+		lblDocumento.setBounds(10, 4, 141, 30);
 		panel_3.add(lblDocumento);
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(268, 3, 214, 37);
+		textField_2.setBounds(164, 3, 198, 37);
 		textField_2.getDocument().addDocumentListener(new ControlCI());
 		panel_3.add(textField_2);
 		
 		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(33, 221, 531, 40);
+		panel_4.setBounds(33, 221, 364, 40);
 		panel.add(panel_4);
 		panel_4.setLayout(null);
 		
 		JLabel lblL = new JLabel("Departamento");
 		lblL.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblL.setHorizontalAlignment(SwingConstants.CENTER);
-		lblL.setBounds(89, 10, 141, 30);
+		lblL.setBounds(27, 2, 130, 30);
 		panel_4.add(lblL);
 		
 		comboBox = new JComboBox<String>();
-		comboBox.setBounds(269, 0, 213, 38);
+		comboBox.setBounds(164, 0, 198, 38);
 		comboBox.addItem("ARTIGAS");
 		comboBox.addItem("RIVERA");
 		comboBox.addItem("MONTEVIDEO");
@@ -195,45 +202,217 @@ public class InterfazGrafica {
 		
 		
 		JPanel panel_4_1 = new JPanel();
-		panel_4_1.setBounds(33, 290, 531, 40);
+		panel_4_1.setBounds(33, 290, 364, 40);
 		panel.add(panel_4_1);
 		panel_4_1.setLayout(null);
 		
 		JLabel lblFechaNacimiento = new JLabel("Fecha Nacimiento");
 		lblFechaNacimiento.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblFechaNacimiento.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFechaNacimiento.setBounds(88, 10, 141, 30);
+		lblFechaNacimiento.setBounds(10, 0, 141, 40);
 		panel_4_1.add(lblFechaNacimiento);
 		
 	    dateChooser = new JDateChooser();
-		dateChooser.setBounds(268, 0, 213, 40);
+		dateChooser.setBounds(161, 0, 203, 40);
 		panel_4_1.add(dateChooser);
+		dateChooser.setDate(new Date(1950l));
 	
 		JPanel panel_4_2 = new JPanel();
-		panel_4_2.setBounds(33, 354, 531, 40);
+		panel_4_2.setBounds(33, 358, 362, 40);
 		panel.add(panel_4_2);
 		panel_4_2.setLayout(null);
 		
 		JLabel lblHijos = new JLabel("Hijos");
 		lblHijos.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblHijos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHijos.setBounds(87, 10, 141, 30);
+		lblHijos.setBounds(0, 0, 141, 40);
 		panel_4_2.add(lblHijos);
 		
 	    spinner_1 = new JSpinner(new SpinnerNumberModel(0,0,100,1));
-		spinner_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		spinner_1.setBounds(272, 0, 49, 40);
-		panel_4_2.add(spinner_1);
+	    spinner_1.setBounds(162, 1, 49, 40);
+	    panel_4_2.add(spinner_1);
+	    spinner_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		textArea = new JTextArea();
-		textArea.setBounds(33, 476, 531, 173);
+		textArea.setBounds(35, 521, 681, 173);
 		panel.add(textArea);
 		
 		btnNewButton = new JButton("Enviar");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnNewButton.setBounds(206, 413, 143, 40);
+		btnNewButton.setBounds(150, 461, 143, 40);
 		btnNewButton.addActionListener(new EventoBoton());
 		panel.add(btnNewButton);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(33, 24, 362, 40);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Nombre");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(14, 7, 141, 30);
+		panel_1.add(lblNewLabel);
+		
+		textField = new JTextField();
+		textField.setBounds(165, 0, 197, 37);
+		panel_1.add(textField);
+		textField.setColumns(10);
+		
+		panel_izquierdo = new JPanel();
+		panel_izquierdo.setBounds(405, 10, 311, 491);
+		panel.add(panel_izquierdo);
+		panel_izquierdo.setLayout(null);
+		
+		labPropietario = new JLabel();
+		labPropietario.setEnabled(false);
+		labPropietario.setText("Propietario");
+		labPropietario.setForeground(Color.BLACK);
+		labPropietario.setHorizontalAlignment(SwingConstants.CENTER);
+		labPropietario.setFont(new Font("Tahoma", Font.BOLD, 15));
+		labPropietario.setBounds(10, 10, 278, 26);
+		panel_izquierdo.add(labPropietario);
+		
+		ButtonGroup grupo = new ButtonGroup();
+		
+		botonBarco = new JRadioButton("Barco");
+		botonBarco.setEnabled(false);
+		botonBarco.setFont(new Font("Tahoma", Font.BOLD, 15));
+		botonBarco.setBounds(33, 62, 103, 21);
+		panel_izquierdo.add(botonBarco);
+		botonBarco.setSelected(true);
+		botonBarco.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				InterfazGrafica.spinnerLongitud.setEnabled(false);
+				InterfazGrafica.spinnerPasajeros.setEnabled(false);
+				InterfazGrafica.spinnerManga.setEnabled(true);
+				InterfazGrafica.spinnerEslora.setEnabled(true);
+
+			}
+			
+		});
+		
+		botonAvion = new JRadioButton("Avión");
+		botonAvion.setEnabled(false);
+		botonAvion.setFont(new Font("Tahoma", Font.BOLD, 15));
+		botonAvion.setBounds(33, 197, 103, 21);
+		panel_izquierdo.add(botonAvion);
+		botonAvion.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				InterfazGrafica.spinnerManga.setEnabled(false);
+				InterfazGrafica.spinnerEslora.setEnabled(false);
+				InterfazGrafica.spinnerLongitud.setEnabled(true);
+				InterfazGrafica.spinnerPasajeros.setEnabled(true);
+
+			}
+			
+		});
+
+		grupo.add(botonAvion);
+		grupo.add(botonBarco);
+		
+		spinnerManga = new JSpinner(new SpinnerNumberModel(0.0,0.0,28.0,0.1));
+		spinnerManga.setEnabled(false);
+		spinnerManga.setFont(new Font("Tahoma", Font.BOLD, 15));
+		spinnerManga.setBounds(154, 99, 68, 20);
+		panel_izquierdo.add(spinnerManga);
+		
+		
+		spinnerEslora = new JSpinner(new SpinnerNumberModel(0.0,0.0,180.0,0.5));
+		spinnerEslora.setEnabled(false);
+		spinnerEslora.setFont(new Font("Tahoma", Font.BOLD, 15));
+		spinnerEslora.setBounds(154, 141, 67, 20);
+		panel_izquierdo.add(spinnerEslora);
+		
+		JLabel lblNewLabel_1 = new JLabel("Manga");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_1.setBounds(33, 100, 103, 19);
+		panel_izquierdo.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Eslora");
+		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_1_1.setBounds(33, 142, 103, 19);
+		panel_izquierdo.add(lblNewLabel_1_1);
+		
+		JLabel labLongitud = new JLabel("Longitud");
+		labLongitud.setHorizontalAlignment(SwingConstants.CENTER);
+		labLongitud.setFont(new Font("Tahoma", Font.BOLD, 15));
+		labLongitud.setBounds(33, 242, 103, 19);
+		panel_izquierdo.add(labLongitud);
+		
+		JLabel lblNewLabel_1_3 = new JLabel("Pasajeros");
+		lblNewLabel_1_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_1_3.setBounds(33, 291, 103, 19);
+		panel_izquierdo.add(lblNewLabel_1_3);
+		
+		spinnerLongitud = new JSpinner(new SpinnerNumberModel(0.0,0.0,90.0,0.1));
+		spinnerLongitud.setEnabled(false);
+		spinnerLongitud.setFont(new Font("Tahoma", Font.BOLD, 15));
+		spinnerLongitud.setBounds(154, 242, 68, 20);
+		panel_izquierdo.add(spinnerLongitud);
+		
+		spinnerPasajeros = new JSpinner(new SpinnerNumberModel(0,0,450,1));
+		spinnerPasajeros.setEnabled(false);
+		spinnerPasajeros.setFont(new Font("Tahoma", Font.BOLD, 15));
+		spinnerPasajeros.setBounds(154, 290, 68, 20);
+		panel_izquierdo.add(spinnerPasajeros);
+		
+		botonCargar = new JButton("Cargar");
+		botonCargar.setEnabled(false);
+		botonCargar.setFont(new Font("Tahoma", Font.BOLD, 15));
+		botonCargar.setBounds(33, 446, 103, 35);
+		panel_izquierdo.add(botonCargar);
+		botonCargar.addActionListener(new EventoCargar());
+		
+		botonTerminar = new JButton("Terminar");
+		botonTerminar.setEnabled(false);
+		botonTerminar.setFont(new Font("Tahoma", Font.BOLD, 15));
+		botonTerminar.setBounds(169, 446, 101, 35);
+		panel_izquierdo.add(botonTerminar);
+		botonTerminar.addActionListener(new EventoTerminar());
+		
+		JLabel labNomVehiculo = new JLabel("Nombre");
+		labNomVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
+		labNomVehiculo.setFont(new Font("Tahoma", Font.BOLD, 14));
+		labNomVehiculo.setBounds(48, 345, 77, 26);
+		panel_izquierdo.add(labNomVehiculo);
+		
+		JLabel lblNewLabel_2_1 = new JLabel("Color");
+		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_2_1.setBounds(48, 389, 77, 26);
+		panel_izquierdo.add(lblNewLabel_2_1);
+		
+		nomVehiculo = new JTextField();
+		nomVehiculo.setEnabled(false);
+		nomVehiculo.setBounds(154, 345, 134, 26);
+		panel_izquierdo.add(nomVehiculo);
+		nomVehiculo.setColumns(10);
+		
+		comboColores = new JComboBox<String>();
+		comboColores.setEnabled(false);
+		comboColores.setBounds(154, 394, 134, 21);
+		panel_izquierdo.add(comboColores);
+		comboColores.addItem("ROJO");
+		comboColores.addItem("AZUL");
+		comboColores.addItem("CAFE");
+		comboColores.addItem("CELESTE");
+		comboColores.addItem("BLANCO");
+		comboColores.addItem("NEGRO");
+		comboColores.addItem("GRIS");
+		comboColores.addItem("VERDE");
+		comboColores.addItem("VIOLETA");
+		comboColores.setEditable(true);
+
 
 		
 	}
@@ -270,5 +449,58 @@ public class InterfazGrafica {
 	public static ArrayList<Persona> getListapersonas() {
 		return listaPersonas;
 	}
+
+	public static JPanel getPanel() {
+		return panel;
+	}
+
+	public void setPanel(JPanel panel) {
+		InterfazGrafica.panel = panel;
+	}
+
+	public static JPanel getPanel_izquierdo() {
+		return panel_izquierdo;
+	}
+
+	public static JLabel getLabPropietario() {
+		return labPropietario;
+	}
+
+
+	public static JSpinner getSpinnerManga() {
+		return spinnerManga;
+	}
+
+	public static JSpinner getSpinnerEslora() {
+		return spinnerEslora;
+	}
+	public static JSpinner getSpinnerLongitud() {
+		return spinnerLongitud;
+	}
+
+	public static JSpinner getSpinnerPasajeros() {
+		return spinnerPasajeros;
+	}
+
+	public static JButton getBotonCargar() {
+		return botonCargar;
+	}
+
+	public static JButton getBotonTerminar() {
+		return botonTerminar;
+	}
+	public static JRadioButton getBotonAvion() {
+		return botonAvion;
 	
+	}public static JRadioButton getBotonBarco() {
+		return botonBarco;
+	}
+	
+	public static JTextField getNomVehiculo() {
+		return nomVehiculo;
+	}
+
+	public static JComboBox<String> getComboColores() {
+		return comboColores;
+	}
 }
