@@ -147,6 +147,7 @@ public class InterfazGrafica {
 		panel_2.add(lblApellido);
 		
 		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
 		textField_1.setBounds(167, 0, 197, 37);
 		panel_2.add(textField_1);
 		textField_1.setColumns(10);
@@ -163,6 +164,7 @@ public class InterfazGrafica {
 		panel_3.add(lblDocumento);
 		
 		textField_2 = new JTextField();
+		textField_2.setFont(new Font("Tahoma", Font.BOLD, 15));
 		textField_2.setColumns(10);
 		textField_2.setBounds(164, 3, 198, 37);
 		textField_2.getDocument().addDocumentListener(new ControlCI());
@@ -262,6 +264,7 @@ public class InterfazGrafica {
 		panel_1.add(lblNewLabel);
 		
 		textField = new JTextField();
+		textField.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
 		textField.setBounds(165, 0, 197, 37);
 		panel_1.add(textField);
 		textField.setColumns(10);
@@ -400,12 +403,14 @@ public class InterfazGrafica {
 		panel_izquierdo.add(lblNewLabel_2_1);
 		
 		nomVehiculo = new JTextField();
+		nomVehiculo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
 		nomVehiculo.setEnabled(false);
 		nomVehiculo.setBounds(154, 345, 134, 26);
 		panel_izquierdo.add(nomVehiculo);
 		nomVehiculo.setColumns(10);
 		
 		comboColores = new JComboBox<String>();
+		comboColores.setFont(new Font("Tahoma", Font.BOLD, 15));
 		comboColores.setEnabled(false);
 		comboColores.setBounds(154, 394, 134, 21);
 		panel_izquierdo.add(comboColores);
