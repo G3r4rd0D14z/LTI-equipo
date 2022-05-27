@@ -68,7 +68,6 @@ public class ControlCI implements DocumentListener{
 		}else if(ciCorrecta()) {
 			
 			InterfazGrafica.getTextField_2().setForeground(Color.GREEN);
-			InterfazGrafica.getButton().setEnabled(true);
 		}
 	}
 

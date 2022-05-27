@@ -12,14 +12,14 @@ public class Persona {
 	private final LocalDate fechaNac;
 	private ArrayList<Vehiculo> listaVehiculos = new ArrayList<>();
 	
-	public Persona(String nombre, String apellido,int idPersona, String departamento, int numHijos,
+	public Persona(String nombre, String apellido,int idPersona, String departamento, double numHijos,
 			LocalDate fechaNac) {
 		
 		this.idPersona = idPersona;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.departamento = departamento;
-		this.numHijos = numHijos;
+		this.numHijos = (int)numHijos;
 		this.fechaNac = fechaNac;
 	}
 	

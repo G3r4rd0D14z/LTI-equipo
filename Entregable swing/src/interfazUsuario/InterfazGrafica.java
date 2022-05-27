@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -30,6 +31,8 @@ import com.toedter.calendar.JDateChooser;
 
 import clases.Persona;
 import funcionalidades.ControlCI;
+import funcionalidades.ControlComponenteVacio;
+import funcionalidades.ControlComponenteVacio;
 import funcionalidades.EventoBoton;
 import funcionalidades.EventoCargar;
 import funcionalidades.EventoMostrar;
@@ -56,14 +59,14 @@ public class InterfazGrafica {
 	private static JDateChooser dateChooser;
 	private static JPanel panel_izquierdo;
 	private static JLabel labPropietario;
+	
 	private static JRadioButton botonBarco;
 	private static JRadioButton botonAvion;
-	
 	private static JSpinner spinnerManga;
 	private static JSpinner spinnerEslora;
 	private static JSpinner spinnerLongitud;
 	private static JSpinner spinnerPasajeros;
-	private static JButton botonCargar;
+	private static JButton botonCargar; 
 	private static JButton botonTerminar;
 	private static ArrayList <Persona> listaPersonas;
 	private static JTextField nomVehiculo;
@@ -233,7 +236,7 @@ public class InterfazGrafica {
 		lblHijos.setBounds(0, 0, 141, 40);
 		panel_4_2.add(lblHijos);
 		
-	    spinner_1 = new JSpinner(new SpinnerNumberModel(0,0,100,1));
+	    spinner_1 = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 100.0, 1.0));
 	    spinner_1.setBounds(162, 1, 49, 40);
 	    panel_4_2.add(spinner_1);
 	    spinner_1.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -251,6 +254,7 @@ public class InterfazGrafica {
 		btnNewButton.setBounds(150, 461, 143, 40);
 		btnNewButton.addActionListener(new EventoBoton());
 		panel.add(btnNewButton);
+		btnNewButton.setEnabled(false);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(33, 24, 362, 40);
@@ -268,6 +272,9 @@ public class InterfazGrafica {
 		textField.setBounds(165, 0, 197, 37);
 		panel_1.add(textField);
 		textField.setColumns(10);
+		
+		
+
 		
 		panel_izquierdo = new JPanel();
 		panel_izquierdo.setBounds(405, 10, 311, 491);
@@ -364,13 +371,13 @@ public class InterfazGrafica {
 		lblNewLabel_1_3.setBounds(33, 291, 103, 19);
 		panel_izquierdo.add(lblNewLabel_1_3);
 		
-		spinnerLongitud = new JSpinner(new SpinnerNumberModel(0.0,0.0,90.0,0.1));
+		spinnerLongitud = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 100.0, 0.1));
 		spinnerLongitud.setEnabled(false);
 		spinnerLongitud.setFont(new Font("Tahoma", Font.BOLD, 15));
 		spinnerLongitud.setBounds(154, 242, 68, 20);
 		panel_izquierdo.add(spinnerLongitud);
 		
-		spinnerPasajeros = new JSpinner(new SpinnerNumberModel(0,0,450,1));
+		spinnerPasajeros = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 500.0, 1.0));
 		spinnerPasajeros.setEnabled(false);
 		spinnerPasajeros.setFont(new Font("Tahoma", Font.BOLD, 15));
 		spinnerPasajeros.setBounds(154, 290, 68, 20);
@@ -431,7 +438,21 @@ public class InterfazGrafica {
 		panel.add(checkInvertir);
 
 
+
+		JComponent [] campos = {textField,textField_1,textField_2};
+		ControlComponenteVacio texVacio = new ControlComponenteVacio(campos,btnNewButton);
+		textField.getDocument().addDocumentListener(texVacio);
+		textField_2.getDocument().addDocumentListener(texVacio);
+		textField_1.getDocument().addDocumentListener(texVacio);
 		
+		JComponent [] campos_1 = {spinnerEslora,spinnerManga,spinnerLongitud,spinnerPasajeros,nomVehiculo};
+		ControlComponenteVacio izqVacio = new ControlComponenteVacio(campos_1,botonCargar);
+		spinnerEslora.addChangeListener(izqVacio);
+		spinnerManga.addChangeListener(izqVacio);
+		spinnerLongitud.addChangeListener(izqVacio);
+		spinnerPasajeros.addChangeListener(izqVacio);
+		nomVehiculo.getDocument().addDocumentListener(izqVacio);
+
 	}
 
 	public static JDateChooser getDateChooser() {
